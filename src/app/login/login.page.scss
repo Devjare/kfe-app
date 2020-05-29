@@ -1,0 +1,86 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.logo {
+	
+	display: flex;
+	justify-content: center;
+	margin: 50px;
+	
+	img {
+		max-width: 100px;
+		max-height: 100px;
+	}
+}
+
+.text-iniciar-sesion {
+	
+	margin: 10px;
+	display: flex;
+	justify-content: center;
+
+	p {
+		font-size: 1.5em;
+	}
+}
+
+.text-input {
+	margin: 15px;
+	margin-left: 25px;
+	margin-right: 25px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-radius: 15px;
+	border: 0.5px solid blue;
+	color: blue;
+	box-shadow: 3px 3px 10px 1px #aaaaaa;
+}
+
+.btn-iniciar {
+
+	display: flex;
+	justify-content: center;
+	align-self: center;
+	padding: 10px;
+	padding-left: 25px;
+	padding-right: 25px;
+	margin: 10px;
+
+	border-radius: 25px;
+	border: 0.5px solid blue;
+	color: white;
+	background: blue;
+}
+
+.text-registrar {
+	display: flex;
+	justify-content: center;
+
+	font-size: 0.7em;
+	color: blue;	
+	
+	p:hover {
+		text-decoration: underline;
+	}
+}
+
+
+.logo-tec {
+	
+	margin: 10px;	
+	display: flex;
+	justify-content: center;
+
+	img {
+		max-width: 200px;
+		box-shadow: 3px 3px 10px 1px #aaaaaa;
+	}
+}
