@@ -1,0 +1,55 @@
+<ion-header>
+	<ion-toolbar color="primary" class="ion-text-center">
+		<ion-title>KFE {{'1'}} PRODUCTOS</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div class="content">
+		<div class="top">
+			<div class="image">
+				<img src=""/>
+			</div>
+			<div class="inputs">
+				<ion-item lines="none">
+					<ion-label position="floating">Nombre producto</ion-label>
+					<ion-input type="text"></ion-input>
+				</ion-item>
+				<ion-item lines="none">
+					<ion-label>Tipo producto</ion-label>
+					<ion-select value="brown" okText="Okay" cancelText="Dismiss">
+						<ion-select-option value="platillo">Platillo</ion-select-option>
+						<ion-select-option value="no-platillo">No Platillo</ion-select-option>
+					</ion-select>
+
+				</ion-item>
+				<ion-item>
+					<ion-label position="floating">Precio</ion-label>
+					<ion-input mode="ios" type="number"></ion-input>
+				</ion-item>
+				<ion-item lines="none">
+					<ion-label>Disponible</ion-label>
+					<ion-checkbox mode="ios"></ion-checkbox>
+					
+				</ion-item>	
+
+			</div>
+		</div>
+		<div class="center">
+			<div class="comments">
+				<ion-item>
+					<ion-label position="floating">Descripcion</ion-label>
+					<ion-textarea>
+					</ion-textarea>
+				</ion-item>
+			</div>
+		</div>
+		<div class="bottom">
+		</div>
+	</div>
+</ion-content>
+
+<ion-footer>
+	<ion-button color="danger" expand="full">Cancelar</ion-button>
+	<ion-button color="primary" expand="full">Agregar</ion-button>
+</ion-footer>
