@@ -1,0 +1,45 @@
+.scroll-horizontal {
+	padding-top: 10px;
+	display: flex;
+	overflow: auto;
+	width: 100%;
+}
+
+.scroll-horizontal-item {
+	flex: none;
+}
+
+.scroll-horizontal-item:not(:first-child) {
+	margin-left: 10px;
+}
+
+.producto-item {
+	
+	img {
+		width: 100px;
+		height: 100px;
+	}
+
+	p {
+		font-size: 14px;
+		text-align: center;
+	}
+}
+
+.center-both {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.not-available {
+	border-radius: 10px;	
+    box-shadow: 1px 1px 5px darkgray;
+    filter: brightness(50%);
+}
+
+.available {
+	border-radius: 10px;	
+    box-shadow: 1px 1px 5px green;
+    filter: brightness(100%);
+}
