@@ -14,9 +14,14 @@ export class LoginService {
 		private afs: AngularFirestore) { }
 
 	iniciarSesion(correo: string, contrasena: string, resolver: (usuario: Usuario) => void, manejarError: (error: any) => void) {
+		console.log('Servicio iniciarSesion');
 		this.afa.auth.signInWithEmailAndPassword(correo, contrasena)
 		.then(async result => {
-			this.getUsuario(result.user.uid).subscribe(usuario => resolver(usuario));
+			console.log('Usuario: ', result);
+			this.getUsuario(result.user.uid).subscribe(usuario => {
+				console.log('Obtained User: ', usuario);
+				resolver(usuario);
+			});
 		})
 		.catch(error => {
 			manejarError(error);
@@ -24,7 +29,7 @@ export class LoginService {
 	}
 
 	getUsuario(uid: string): Observable<Usuario> {
-		return this.afs.doc<Usuario>(`usuarios/${uid}`).valueChanges();
+		return this.afs.doc<Usuario>(`Usuarios/${uid}`).valueChanges();
 	}
 
 }

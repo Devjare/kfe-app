@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Cache } from 'src/app/Cache/cache';
 
 @Component({
 	selector: 'app-pedidos-cafeteria',
@@ -19,6 +20,7 @@ export class PedidosCafeteriaPage implements OnInit {
 	}
 
 	ngOnInit() {
+		console.log('From pedidos, user: ', Cache.usuario);
 		console.log(this.pedidos);
 		this.pedidos = [
 		{

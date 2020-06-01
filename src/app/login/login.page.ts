@@ -21,7 +21,7 @@ export class LoginPage implements OnInit {
 	}
 
 	iniciarSesion() {
-		console.log('Trying to log in!');
+		this.intentarLogin();
 	}
 
 	async intentarLogin() {
