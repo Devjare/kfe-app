@@ -1,0 +1,46 @@
+<ion-header>
+	<ion-toolbar color="primary" class="ion-text-center">
+		<ion-title>KFE {{'1'}} PRODUCTOS</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+	<!-- PLATILLOS -->
+	<ion-item>
+		<ion-label lines="none">
+			COMIDAS: 
+		</ion-label>
+	</ion-item>
+	<ion-item lines="full">
+		<div class="scroll-horizontal">
+
+			<!-- PLATILLOS item -->
+			<div class="scroll-horizontal-item producto-item" *ngFor="let i of platillos" [ngSwitch]="i.disponible">
+				<img *ngSwitchCase="false" class="producto-item not-available" src="https://cdn.kiwilimon.com/recetaimagen/13550/th5-640x426-6040.jpg" alt="{{i.producto}}" (click)="cambiarDisponibilidadPlatillo(i)">
+				<img *ngSwitchCase="true" class="producto-item available" src="https://cdn.kiwilimon.com/recetaimagen/13550/th5-640x426-6040.jpg" alt="{{i.producto}}" (click)="cambiarDisponibilidadPlatillo(i)">
+				<p>{{i.producto}}</p>
+			</div>
+
+		</div>
+	</ion-item>
+	
+	<!-- GUISOS -->
+	<ion-item>
+		<ion-label lines="none">
+			GUISOS: 
+		</ion-label>
+	</ion-item>
+	<ion-item lines="full">
+		<div class="scroll-horizontal">
+
+			<!-- producto item -->
+			<div class="scroll-horizontal-item producto-item" *ngFor="let i of guisos" [ngSwitch]="i.disponible">
+				<img *ngSwitchCase="true" class="producto-item available" src="https://cdn.kiwilimon.com/recetaimagen/13550/th5-640x426-6040.jpg" alt="{{i.producto}}" (click)="cambiarDisponibilidadGuiso(i)">
+				<img *ngSwitchCase="false" class="producto-item not-available" src="https://cdn.kiwilimon.com/recetaimagen/13550/th5-640x426-6040.jpg" alt="{{i.producto}}" (click)="cambiarDisponibilidadGuiso(i)">
+				<p>{{i.nombre}}</p>
+			</div>
+
+		</div>
+	</ion-item>
+</ion-content>

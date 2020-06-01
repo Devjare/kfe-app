@@ -9,9 +9,14 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
-  },  {
+  },
+  {
     path: 'pedido-alumno',
     loadChildren: () => import('./pedido-alumno/pedido-alumno.module').then( m => m.PedidoAlumnoPageModule)
+  },
+  {
+    path: 'tabs-cafeteria',
+    loadChildren: () => import('./tabs-cafeteria/tabs-cafeteria.module').then( m => m.TabsCafeteriaPageModule)
   }
 
 ];
