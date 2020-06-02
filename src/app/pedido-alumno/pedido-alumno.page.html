@@ -1,9 +1,64 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>pedido-alumno</ion-title>
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-title mode="ios">
+      <ion-label>
+        <h1>KFE1</h1>
+      </ion-label>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+  <ion-item lines="full" class="descripcion">
+    <h4>Pechuga Rellena</h4>
+  </ion-item>
+
+  <div class="center">
+    <img src="../../assets/icon//Imagen1.jpg" class="imagenPedido">
+
+    <ion-item class="descripcion" lines="none">
+      <ion-text>
+        <p>Levan frijoles, lechuga y salsa bien ruquis que te encantara si yo digo que si.</p>
+      </ion-text>
+    </ion-item>
+
+    <ion-row class="precio">
+      <ion-col>
+        $10.00
+      </ion-col>
+      <ion-col>
+        Disponibles X
+      </ion-col>
+    </ion-row>
+
+    <ion-item lines="full" class="descripcion">
+      <h5>Guisos disponibles</h5>
+    </ion-item>
+
+    <ion-item class="descripcion" lines="none">
+      <ion-text>
+        <p>Frijoles, papas con chorizo, huevo verde, chicharron, puto el que lo lea, bistec</p>
+      </ion-text>
+    </ion-item>
+
+    <!--<ion-item lines="full" class="descripcion">
+      <h5>Describre tu pedido</h5>
+    </ion-item>
+
+    <ion-textarea class="descripcion"></ion-textarea>-->
+
+    <ion-item>
+      <ion-label position="stacked">Describe tu pedido</ion-label>
+      <ion-textarea class="descripcion"></ion-textarea>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked">Cantidad</ion-label>
+      <ion-input required type="text" class="descripcion"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" color="dark">Ordenar</ion-button>
+    
+  </div>
 
 </ion-content>
