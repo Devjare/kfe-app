@@ -1,5 +1,5 @@
 export interface Guiso {
-	// uid: string;
+	uid: string;
 	nombre: string;
 	cafeteria: string; // uidCafeteria
 	disponible: boolean;

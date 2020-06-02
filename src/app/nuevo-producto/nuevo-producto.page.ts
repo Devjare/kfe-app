@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CafeteriaService } from 'src/app/services/cafeteria.service';
 import { Cache } from 'src/app/Cache/cache';
+import { ModalController } from '@ionic/angular';
 
 @Component({
 	selector: 'app-nuevo-producto',
@@ -18,7 +19,8 @@ export class NuevoProductoPage implements OnInit {
 	esPlatillo = true;
 
 	constructor(
-		private cafeteriaService: CafeteriaService) { }
+		private cafeteriaService: CafeteriaService,
+		private modalController: ModalController) { }
 
 	ngOnInit() {
 	}
@@ -47,8 +49,6 @@ export class NuevoProductoPage implements OnInit {
 				disponible: this.disponible,
 				ingredientes: this.descripcion,
 				producto: this.nombre
-			}).then(data => {
-				console.log('uidplatillo: ', data);	
 			});
 		} else {
 			this.cafeteriaService.agregarGuiso({
@@ -56,11 +56,28 @@ export class NuevoProductoPage implements OnInit {
 				disponible: this.disponible,
 				descripcion: this.descripcion,
 				nombre: this.nombre
-			}).then(data => {
-				console.log('uid: ' , data);
 			});
 		}
 
+		this.limpiar();
+		this.dismissModal(true);
+
 		// TODO: ADD PRODUCT TO DB
+	}
+
+	cancelar() {
+		this.dismissModal(false);
+	}
+
+	limpiar() {
+		this.nombre = '';
+		this.precio = 0.0;
+		this.disponible = false;
+		this.tipo = 'platillo';
+		this.descripcion = '';
+	}
+
+	dismissModal(productoAgregado: boolean) {
+		this.modalController.dismiss(productoAgregado);
 	}
 }

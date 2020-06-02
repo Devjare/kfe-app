@@ -15,6 +15,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 
+import { NuevoProductoPageModule } from 'src/app/nuevo-producto/nuevo-producto.module';
+
 import { environment } from 'src/environments/environment';
 
 @NgModule({
@@ -27,7 +29,8 @@ import { environment } from 'src/environments/environment';
 	AngularFireModule.initializeApp(environment.firebaseConfig),
 	AngularFireAuthModule,
 	AngularFirestoreModule,
-	AngularFireStorageModule,],
+	AngularFireStorageModule,
+	NuevoProductoPageModule],
 	providers: [
 	StatusBar,
 	SplashScreen,
