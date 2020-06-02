@@ -13,11 +13,11 @@
 			<div class="inputs">
 				<ion-item lines="none">
 					<ion-label position="floating">Nombre producto</ion-label>
-					<ion-input type="text"></ion-input>
+					<ion-input  [(ngModel)]="nombre" type="text"></ion-input>
 				</ion-item>
 				<ion-item lines="none">
 					<ion-label>Tipo producto</ion-label>
-					<ion-select value="brown" okText="Okay" cancelText="Dismiss" (ionChange)="cambiarSeleccion($event)">
+					<ion-select [(ngModel)]="tipo" value="brown" okText="Okay" cancelText="Dismiss" (ionChange)="cambiarSeleccion($event)">
 						<ion-select-option value="platillo">Platillo</ion-select-option>
 						<ion-select-option value="guiso">Guiso</ion-select-option>
 					</ion-select>
@@ -25,11 +25,11 @@
 				</ion-item>
 				<ion-item>
 					<ion-label position="floating">Precio</ion-label>
-					<ion-input  disabled="{{!esPlatillo}}" mode="ios" type="number"></ion-input>
+					<ion-input  [(ngModel)]="precio" disabled="{{!esPlatillo}}" mode="ios" type="number"></ion-input>
 				</ion-item>
 				<ion-item lines="none">
 					<ion-label>Disponible</ion-label>
-					<ion-checkbox mode="ios"></ion-checkbox>
+					<ion-checkbox [(ngModel)]="disponible" mode="ios"></ion-checkbox>
 					
 				</ion-item>	
 
@@ -39,7 +39,7 @@
 			<div class="comments">
 				<ion-item>
 					<ion-label position="floating">Descripcion</ion-label>
-					<ion-textarea>
+					<ion-textarea [(ngModel)]="descripcion">
 					</ion-textarea>
 				</ion-item>
 			</div>
@@ -50,6 +50,6 @@
 </ion-content>
 
 <ion-footer>
-	<ion-button color="danger" expand="full">Cancelar</ion-button>
-	<ion-button color="primary" expand="full">Agregar</ion-button>
+	<!-- <ion-button color="danger" expand="full" (click)="cancelar()">Cancelar</ion-button> -->
+	<ion-button color="primary" expand="full" (click)="agregarProducto()">Agregar</ion-button>
 </ion-footer>

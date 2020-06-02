@@ -46,7 +46,7 @@ export class LoginPage implements OnInit {
 
 					case 'alumno': {
 						console.log('Cuenta de alumno detectada. Iniciando sesion...');
-						this.router.navigateByUrl('/inicio-repartidor/tab-pedidos-repartidor');
+						this.router.navigateByUrl('/tabs');
 						break;
 					}
 

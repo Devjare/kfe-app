@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NuevoProductoPage implements OnInit {
 
+	nombre: string = '';
+	precio: number = 0.0;
+	disponible: boolean = false;
+	descripcion: string = '';
+	tipo: string = '';
+
 	esPlatillo = true;
 
 	constructor() { }
@@ -21,5 +27,13 @@ export class NuevoProductoPage implements OnInit {
 		} else {
 			this.esPlatillo = false;
 		}
+	}
+
+	agregarProducto() {
+		console.log('nombre: ', this.nombre);
+		console.log('precio: ', this.precio);
+		console.log('disponible: ', this.disponible);
+		console.log('descripcion: ', this.descripcion);
+		console.log('tipo: ', this.tipo);
 	}
 }

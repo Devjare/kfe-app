@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CafeteriaService } from 'src/app/services/cafeteria.service';
 
 @Component({
 	selector: 'app-productos-cafeteria',
@@ -10,7 +11,8 @@ export class ProductosCafeteriaPage implements OnInit {
 	private guisos: any[] = [];
 	private platillos: any[] = [];
 
-	constructor() { }
+	constructor(
+		private cafeteriaService: CafeteriaService) { }
 
 	ngOnInit() {
 		this.platillos.push(
