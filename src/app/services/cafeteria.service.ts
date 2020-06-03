@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Platillo } from 'src/app/models/platillo';
 import { Guiso } from 'src/app/models/guiso';
+import { Pedido } from 'src/app/models/pedido';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -48,9 +49,21 @@ export class CafeteriaService {
 		});
 	}
 
-	actualizarDisponibilidadGuiso(uidGuiso, disponibilidad) {
+	actualizarDisponibilidadGuiso(uidGuiso: string, disponibilidad: boolean) {
 		this.afs.collection('Guisos').doc(uidGuiso).update({
 			disponible: disponibilidad
 		});
+	}
+
+	getPedidosDeCafeteria(uidCafeteria: string) {
+		return this.afs.collection<Pedido>('Pedidos').valueChanges().pipe(
+			map(pedidos => pedidos.filter(pedido => pedido.cafeteria == uidCafeteria))
+			);
+	}
+
+	actualizarEstadoPedido(uidPedido: string, nuevoEstado: string) {
+		this.afs.collection('Pedidos').doc(uidPedido).update({
+			estado: nuevoEstado
+		});	
 	}
 }

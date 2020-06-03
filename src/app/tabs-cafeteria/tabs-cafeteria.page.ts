@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tabs-cafeteria',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabsCafeteriaPage implements OnInit {
 
-  constructor() { }
+  constructor(
+  	private menuController: MenuController) { }
 
   ngOnInit() {
+  	this.menuController.enable(true, 'menu-principal');
   }
-
 }
