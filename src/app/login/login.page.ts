@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { Cache } from 'src/app/Cache/cache';
 import { Router } from '@angular/router';
+import { MenuController } from '@ionic/angular';
 
 @Component({
 	selector: 'app-login',
@@ -15,9 +16,13 @@ export class LoginPage implements OnInit {
 
 	constructor(
 		private loginService: LoginService,
-		private router: Router) { }
+		private router: Router,
+		private menuController: MenuController) { 
+		this.menuController.enable(false, 'menu-principal')
+	}
 
 	ngOnInit() {
+		this.menuController.enable(false, 'menu-principal')
 	}
 
 	iniciarSesion() {
@@ -36,25 +41,31 @@ export class LoginPage implements OnInit {
 				console.log('Usuario obtenido:');
 				console.log(usuario);
 
-				switch (usuario.posicion) {
+				if(usuario != undefined) {
+					this.correo = '';
+					this.contrasena = '';
+					switch (usuario.posicion) {
 
-					case 'cafeteria': {
-						console.log('Cuenta de cafeteria detectada. Iniciando sesion...');
-						this.router.navigateByUrl('/tabs-cafeteria');
-						break;
-					}
+						case 'cafeteria': {
+							console.log('Cuenta de cafeteria detectada. Iniciando sesion...');
+							this.router.navigateByUrl('/tabs-cafeteria');
+							break;
+						}
 
-					case 'alumno': {
-						console.log('Cuenta de alumno detectada. Iniciando sesion...');
-						this.router.navigateByUrl('/tabs');
-						break;
-					}
+						case 'alumno': {
+							console.log('Cuenta de alumno detectada. Iniciando sesion...');
+							this.router.navigateByUrl('/tabs');
+							break;
+						}
 
-					default: {
-						console.log('Ninguna cuenta detectada :(');
-						// this.guiUtils.mostrarToast('Este correo no parece estar vinculado con ninguna cuenta', 3000, 'danger');
-						break;
+						default: {
+							console.log('Ninguna cuenta detectada :(');
+							// this.guiUtils.mostrarToast('Este correo no parece estar vinculado con ninguna cuenta', 3000, 'danger');
+							break;
+						}
 					}
+				} else {
+					console.log('Usuario no encontrado');
 				}
 			},
 			error => {
