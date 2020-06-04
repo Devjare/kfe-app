@@ -59,7 +59,7 @@ export class PedidosCafeteriaPage implements OnInit {
 			pedido.estado = this.FINALIZADO;
 			this.cafeteriaService.actualizarEstadoPedido(pedido.uid, this.FINALIZADO);
 		}
-		this.getEstadoPedido(pedido);
+		// this.getEstadoPedido(pedido);
 	}
 
 	getEstadoPedido(uidPedido: string) {

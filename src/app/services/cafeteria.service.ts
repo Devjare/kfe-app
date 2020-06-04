@@ -3,8 +3,10 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Platillo } from 'src/app/models/platillo';
 import { Guiso } from 'src/app/models/guiso';
 import { Pedido } from 'src/app/models/pedido';
+import { Usuario } from 'src/app/models/usuario';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { UsuarioService } from './usuario.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -12,7 +14,8 @@ import { Observable } from 'rxjs';
 export class CafeteriaService {
 
 	constructor(
-		private afs: AngularFirestore) { }
+		private afs: AngularFirestore,
+		private usuarioService: UsuarioService) { }
 
 	getPlatillosFromCafeteria(uidCafeteria) {
 		return this.afs.collection<Platillo>('Platillos').valueChanges().pipe(
@@ -61,8 +64,26 @@ export class CafeteriaService {
 
 	getPedidosDeCafeteria(uidCafeteria: string) {
 		return this.afs.collection<Pedido>('Pedidos').valueChanges().pipe(
-			map(pedidos => pedidos.filter(pedido => pedido.cafeteria == uidCafeteria))
-			);
+			map(pedidos => {
+				let pedidosConNombres = new Array<Pedido>();
+
+				// pedidos.filter(pedido => pedido.cafeteria == uidCafeteria)
+				pedidos.forEach(pedido => {
+
+					if(pedido.cafeteria == uidCafeteria) {
+						this.usuarioService.getUsuarioPorUid(pedido.cliente).subscribe(res => {
+							let usuario = res as Usuario;
+							console.log('Res: ', usuario.nombre);
+							if(usuario.nombre) {
+								pedido.nombreCliente = usuario.nombre + ' ' + usuario.apellidos;
+								pedidosConNombres.push(pedido);
+							}
+						});
+					}
+				});
+
+				return pedidosConNombres;
+			}));
 	}
 
 	actualizarEstadoPedido(uidPedido: string, nuevoEstado: string) {

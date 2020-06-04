@@ -2,6 +2,7 @@ export interface Pedido {
 	cafeteria: string; // uidCafeteria
 	cantidad: number;
 	cliente: string; // uidCliente
+	nombreCliente?: string;
 	descripcion: string;
 	fecha: string;
 	posicion: number;
