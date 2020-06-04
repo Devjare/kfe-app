@@ -36,6 +36,7 @@ export class Tab3Page implements OnInit{
     this.router.navigate(['/pedido-alumno'],{
       queryParams:{
         uidPlatillo: uid,
+        uidCafeteria: this.uidCafeteria
       }
     });
   }

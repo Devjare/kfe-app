@@ -16,7 +16,7 @@
 
 <ion-content class="ion-padding">
   <ion-item lines="full" class="descripcion">
-    <h4>Nombre platillo</h4>
+    <h4>{{platillo.producto}}</h4>
   </ion-item>
 
   <div class="center">
@@ -24,16 +24,13 @@
 
     <ion-item class="descripcion" lines="none">
       <ion-text>
-        <p>Levan frijoles, lechuga y salsa bien ruquis que te encantara si yo digo que si.</p>
+        <p>{{platillo.ingredientes}}</p>
       </ion-text>
     </ion-item>
 
     <ion-row class="precio">
       <ion-col>
-        $10.00
-      </ion-col>
-      <ion-col>
-        Disponibles X
+        ${{platillo.costo}}
       </ion-col>
     </ion-row>
 
@@ -43,21 +40,21 @@
 
     <ion-item class="descripcion" lines="none">
       <ion-text>
-        <p>Frijoles, papas con chorizo, huevo verde, chicharron, puto el que lo lea, bistec</p>
+        <p>{{ guisosDisponibles.join(", ") }}</p>
       </ion-text>
     </ion-item>
 
     <ion-item>
       <ion-label position="stacked">Describe tu pedido</ion-label>
-      <ion-textarea class="descripcion"></ion-textarea>
+      <ion-textarea class="descripcion" [(ngModel)]="descripcion"></ion-textarea>
     </ion-item>
     
     <ion-item>
       <ion-label position="stacked">Cantidad</ion-label>
-      <ion-input required type="text" class="descripcion"></ion-input>
+      <ion-input required type="text" class="descripcion" [(ngModel)]="cantidad"></ion-input>
     </ion-item>
 
-    <ion-button expand="block" color="dark">Ordenar</ion-button>
+    <ion-button expand="block" color="dark" (click)="agregarPedido()">Ordenar</ion-button>
     
   </div>
 
