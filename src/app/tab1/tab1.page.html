@@ -44,8 +44,12 @@
   </ion-content>
 
 </ion-menu>
+<<<<<<< HEAD
  -->
 //TODO Santana: decirle a andres del color de la app
+=======
+
+>>>>>>> 7b40028d5d6350233cf69c76b4948e6642c14efd
 <ion-header [translucent]="true">
   <ion-toolbar color="dark">
     <ion-buttons slot="start">
@@ -53,18 +57,18 @@
     </ion-buttons>
     <ion-title mode="ios">
       <ion-label>
-        <h1>KFE1</h1>
+        <h1>KFE 1</h1>
       </ion-label>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <!--<ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">KFE 2</ion-title>
     </ion-toolbar>
-  </ion-header>
+  </ion-header>-->
 
   <div class="ion-padding">
     <h3 class="menu-text"><strong>Menú</strong></h3>
@@ -72,7 +76,7 @@
   </div>
 
   <div>
-    <ion-card>
+    <ion-card *ngFor = "let i of Platillos" (click)="abrirPedido(i.uid)">
       <ion-card-header>
         <ion-row justify-content-between>
           <ion-col col-auto>
@@ -80,43 +84,14 @@
           </ion-col>
           <ion-col>
             <ion-row text-wrap>
-              <h6 class="menu-text"><strong>Enchiladas de pollo</strong></h6>
+              <h6 class="menu-text"><strong>{{i.producto}}</strong></h6>
             </ion-row>
             <ion-row text-wrap>
-              <p>LLevan frijoles, lechuga y salsa bien ruquis que te encantara si yo digo que si.</p>
+              <p>{{i.ingredientes}}</p>
             </ion-row>
             <ion-row class="buttons">
               <ion-col>
-                $10.00
-              </ion-col>
-              <ion-col>
-                Disp. X
-              </ion-col>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-card-header>
-    </ion-card>
-
-    <ion-card>
-      <ion-card-header>
-        <ion-row justify-content-between>
-          <ion-col col-auto>
-            <img src="../../assets/icon/Imagen3.jpg" item-left/>
-          </ion-col>
-          <ion-col>
-            <ion-row text-wrap>
-              <h6 class="menu-text"><strong>Tacos</strong></h6>
-            </ion-row>
-            <ion-row text-wrap>
-              <p>De maiz y de harina de diversos guisos, yomii.</p>
-            </ion-row>
-            <ion-row class="buttons">
-              <ion-col>
-                $6.00
-              </ion-col>
-              <ion-col>
-                Disp. 100
+                ${{i.costo}}.00
               </ion-col>
             </ion-row>
           </ion-col>
