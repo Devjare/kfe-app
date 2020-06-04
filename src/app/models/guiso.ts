@@ -3,4 +3,5 @@ export interface Guiso {
 	nombre: string;
 	cafeteria: string; // uidCafeteria
 	disponible: boolean;
+	foto?: string;
 }

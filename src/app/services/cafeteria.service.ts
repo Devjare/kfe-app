@@ -28,19 +28,23 @@ export class CafeteriaService {
 
 	agregarPlatillo(platillo) {
 		console.log('platillo a agregar: ', platillo);
-		this.afs.collection('Platillos').add(platillo).then(docRef => {
-			this.afs.collection('Platillos').doc(docRef.id).update({
-				uid: docRef.id
-			});
+		return this.afs.collection('Platillos').add(platillo);
+	}
+
+	agregarUidPlatillo(uidPlatillo) {
+		this.afs.collection('Platillos').doc(uidPlatillo).update({
+			uid: uidPlatillo
 		});
 	}
 
-	agregarGuiso(guiso) {
-		this.afs.collection('Guisos').add(guiso).then(docRef => {
-			this.afs.collection('Guisos').doc(docRef.id).update({
-				uid: docRef.id
-			});
+	agregarUidGuiso(uidGuiso) {
+		this.afs.collection('Guisos').doc(uidGuiso).update({
+			uid: uidGuiso
 		});
+	}	
+
+	agregarGuiso(guiso) {
+		return this.afs.collection('Guisos').add(guiso);
 	}
 
 	actualizarDisponibilidadPlatillo(uidPlatillo, disponibilidad) {

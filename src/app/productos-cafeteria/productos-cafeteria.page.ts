@@ -16,6 +16,8 @@ export class ProductosCafeteriaPage implements OnInit {
 	private guisos: Guiso[] = [];
 	private platillos: Platillo[] = [];
 
+	default: string = 'src/assets/images/comida.png';
+
 	constructor(
 		private cafeteriaService: CafeteriaService,
 		private modalController: ModalController) { }

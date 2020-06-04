@@ -7,9 +7,11 @@
 <ion-content>
 	<div class="content">
 		<div class="top">
-			<div class="image">
-				<img src=""/>
+			<div class="image" (click)="changeImage()">
+				<img id="image" [src]="url? urlDefecto : url"/>
 			</div>
+			<input id="inputCambiarImagen" type="file" accept="image/*" style="display: none" (change)="onInputCambiarImagen($event)"/>
+			<ion-button expand="full" (click)="onCambiarImagenClick()">Subir Imagen</ion-button>
 			<div class="inputs">
 				<ion-item lines="none">
 					<ion-label position="floating">Nombre producto</ion-label>
