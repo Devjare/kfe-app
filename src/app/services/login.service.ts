@@ -28,6 +28,10 @@ export class LoginService {
 		});
 	}
 
+	iniciarSesionConUid(uid: string, contrasena: string) {
+		
+	}
+
 	getUsuario(uid: string): Observable<Usuario> {
 		return this.afs.doc<Usuario>(`Usuarios/${uid}`).valueChanges();
 	}
