@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'tabs-cafeteria',
     loadChildren: () => import('./tabs-cafeteria/tabs-cafeteria.module').then( m => m.TabsCafeteriaPageModule)
+  },
+  {
+    path: 'editar-usuario',
+    loadChildren: () => import('./pages/editar-usuario/editar-usuario.module').then( m => m.EditarUsuarioPageModule)
   }
 
 ];

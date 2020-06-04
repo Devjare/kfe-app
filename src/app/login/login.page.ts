@@ -32,6 +32,18 @@ export class LoginPage implements OnInit {
 	async intentarLogin() {
 		console.log('Iniciando sesion...');
 
+		this.iniciarSesionConCorreo();
+		// if(this.correo.includes('@')) {
+		// } else {
+		// 	this.iniciarSesionConUid();
+		// }
+	}
+
+	iniciarSesionConUid() {
+
+	}
+
+	iniciarSesionConCorreo() {
 		this.loginService.iniciarSesion(this.correo, this.contrasena,
 			usuario => {
 				console.log('Exito al iniciar sesion :D');
@@ -54,7 +66,7 @@ export class LoginPage implements OnInit {
 
 						case 'alumno': {
 							console.log('Cuenta de alumno detectada. Iniciando sesion...');
-							this.router.navigateByUrl('/tabs');
+							this.router.navigateByUrl('/inicio');
 							break;
 						}
 
@@ -75,5 +87,4 @@ export class LoginPage implements OnInit {
 				// this.guiUtils.mostrarToast('Verifica tu correo y contraseña', 3000, 'danger');
 			});
 	}
-
 }

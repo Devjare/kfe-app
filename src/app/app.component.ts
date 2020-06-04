@@ -35,4 +35,8 @@ export class AppComponent {
     this.menuController.enable(false, 'menu-principal');
     this.router.navigateByUrl('/');
   }
+
+  configurar() {
+    this.router.navigateByUrl('/editar-usuario');
+  }
 }
