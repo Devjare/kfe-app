@@ -6,4 +6,5 @@ export interface Platillo {
 	total: number;
 	contenido: number;
 	cafeteria: string;
+	uid: string;
 }
