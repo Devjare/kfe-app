@@ -1,6 +1,12 @@
-.center {
+.div-usuario {
 	width: 100%;
-	background: black;
+	margin: 5px;
+	padding: 5px;
+
 	display: flex;
-	justify-content: space-around;
+	justify-content: center;
+	
+	p {
+		font-size: 24px;
+	}
 }

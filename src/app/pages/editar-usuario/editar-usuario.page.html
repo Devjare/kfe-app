@@ -8,19 +8,19 @@
 <ion-content>
 	<ion-item>
 		<ion-label position="floating">Nombre</ion-label>
-		<ion-input type="text"></ion-input>
+		<ion-input [(ngModel)]="nombre" type="text"></ion-input>
 	</ion-item>
 	<ion-item>
 		<ion-label position="floating">Apellidos</ion-label>
-		<ion-input type="text"></ion-input>
+		<ion-input [(ngModel)]="apellidos" type="text"></ion-input>
 	</ion-item>
 </ion-content>
 
 <ion-footer>
-	<ion-button color="danger" expand="full">
+	<ion-button color="danger" expand="full" (click)="cancelar()">
 		Cancelar
 	</ion-button>
-	<ion-button color="primary" expand="block">
+	<ion-button color="primary" expand="block" (click)="guardar()">
 		Guardar
 	</ion-button>
 </ion-footer>

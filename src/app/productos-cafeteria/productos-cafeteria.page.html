@@ -17,8 +17,8 @@
 
 			<!-- PLATILLOS item -->
 			<div class="scroll-horizontal-item producto-item" *ngFor="let i of platillos" [ngSwitch]="i.disponible">
-				<img *ngSwitchCase="false" class="producto-item not-available" src="https://cdn.kiwilimon.com/recetaimagen/13550/th5-640x426-6040.jpg" alt="{{i.producto}}" (click)="cambiarDisponibilidadPlatillo(i)">
-				<img *ngSwitchCase="true" class="producto-item available" src="https://cdn.kiwilimon.com/recetaimagen/13550/th5-640x426-6040.jpg" alt="{{i.producto}}" (click)="cambiarDisponibilidadPlatillo(i)">
+				<ion-img *ngSwitchCase="false" class="producto-item not-available" [src]="i.foto? i.foto : default" alt="{{i.producto}}" (click)="cambiarDisponibilidadPlatillo(i)"></ion-img>
+				<ion-img *ngSwitchCase="true" class="producto-item available" [src]="i.foto? i.foto : default" alt="{{i.producto}}" (click)="cambiarDisponibilidadPlatillo(i)"></ion-img>
 				<p>{{i.producto}}</p>
 			</div>
 
@@ -34,10 +34,11 @@
 	<ion-item lines="full">
 		<div class="scroll-horizontal">
 
-			<!-- producto item -->
 			<div class="scroll-horizontal-item producto-item" *ngFor="let i of guisos" [ngSwitch]="i.disponible">
-				<img *ngSwitchCase="true" class="producto-item available" src="https://cdn.kiwilimon.com/recetaimagen/13550/th5-640x426-6040.jpg" alt="{{i.producto}}" (click)="cambiarDisponibilidadGuiso(i)">
-				<img *ngSwitchCase="false" class="producto-item not-available" src="https://cdn.kiwilimon.com/recetaimagen/13550/th5-640x426-6040.jpg" alt="{{i.producto}}" (click)="cambiarDisponibilidadGuiso(i)">
+				
+				<ion-img *ngSwitchCase="false" class="producto-item not-available" [src]="i.foto? i.foto : default" alt="{{i.nombre}}" (click)="cambiarDisponibilidadPlatillo(i)"></ion-img>
+				
+				<ion-img *ngSwitchCase="true" class="producto-item available" [src]="i.foto? i.foto : default" alt="{{i.producto}}" (click)="cambiarDisponibilidadPlatillo(i)"></ion-img>
 				<p>{{i.nombre}}</p>
 			</div>
 

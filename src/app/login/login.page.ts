@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { Cache } from 'src/app/Cache/cache';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { MenuController, ToastController } from '@ionic/angular';
 
 @Component({
 	selector: 'app-login',
@@ -11,36 +11,42 @@ import { MenuController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
+	logtext = 'Iniciar Sesion';
+	logtype = 'login';
+	tipText = 'No estas registrado?, Hazlo ahora!'
+
 	correo: string;
 	contrasena: string;
 
 	constructor(
 		private loginService: LoginService,
 		private router: Router,
-		private menuController: MenuController) { 
+		private menuController: MenuController,
+		private toast: ToastController) { 
 		this.menuController.enable(false, 'menu-principal')
 	}
 
 	ngOnInit() {
 		this.menuController.enable(false, 'menu-principal')
+		Cache.iniciarCache();
 	}
 
-	iniciarSesion() {
-		this.intentarLogin();
+	log() {
+		if(this.logtype == 'login') {
+			this.intentarLogin();
+		} else {
+			this.intentarRegistro();
+		}
 	}
 
 	async intentarLogin() {
 		console.log('Iniciando sesion...');
-
 		this.iniciarSesionConCorreo();
-		// if(this.correo.includes('@')) {
-		// } else {
-		// 	this.iniciarSesionConUid();
-		// }
 	}
 
-	iniciarSesionConUid() {
-
+	async intentarRegistro() {
+		console.log('Intentado registar usuario!');
+		this.registrarUsuario();
 	}
 
 	iniciarSesionConCorreo() {
@@ -86,5 +92,48 @@ export class LoginPage implements OnInit {
 				// this.guiUtils.cerrarCargando(this.cargandoDialog);
 				// this.guiUtils.mostrarToast('Verifica tu correo y contraseña', 3000, 'danger');
 			});
+	}
+
+	cambiarLogType() {
+		if(this.logtype == 'login'){
+			this.logtext = 'Registrate';
+			this.logtype = 'logout';
+			this.tipText = 'Ya estas registrado?, Inicia sesion';
+		} else {
+			this.logtext = 'Iniciar Sesion';
+			this.logtype = 'login';
+			this.tipText = 'No estas registrado?, Hazlo ahora!';
+		}
+	}
+
+	registrarUsuario() {
+		this.loginService.registrarUsuario(this.correo, this.contrasena)
+		.then(async result => {
+			console.log('result: ', result);
+			this.presentToast('Usuario registrado exitosamente!');
+
+			let uid = result.user.uid;
+			Cache.usuario.uid = uid;
+			Cache.usuario.email = this.correo;
+			Cache.usuario.posicion = 'alumno';
+
+			this.router.navigateByUrl('/editar-usuario', {
+				queryParams: {
+					tipo: 'registro'
+				}
+			});
+
+		}).catch(err => {
+			this.presentToast('Failed to create user. Error: ');
+			console.log('err: ', err);
+		});
+	}
+
+	async presentToast(msg: string) {
+		const toast = await this.toast.create({
+			message: msg,
+			duration: 2000
+		});
+		toast.present();
 	}
 }

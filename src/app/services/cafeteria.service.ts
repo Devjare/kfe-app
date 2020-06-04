@@ -3,8 +3,10 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Platillo } from 'src/app/models/platillo';
 import { Guiso } from 'src/app/models/guiso';
 import { Pedido } from 'src/app/models/pedido';
+import { Usuario } from 'src/app/models/usuario';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { UsuarioService } from './usuario.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -12,7 +14,8 @@ import { Observable } from 'rxjs';
 export class CafeteriaService {
 
 	constructor(
-		private afs: AngularFirestore) { }
+		private afs: AngularFirestore,
+		private usuarioService: UsuarioService) { }
 
 	getPlatillosFromCafeteria(uidCafeteria) {
 		return this.afs.collection<Platillo>('Platillos').valueChanges().pipe(
@@ -28,19 +31,23 @@ export class CafeteriaService {
 
 	agregarPlatillo(platillo) {
 		console.log('platillo a agregar: ', platillo);
-		this.afs.collection('Platillos').add(platillo).then(docRef => {
-			this.afs.collection('Platillos').doc(docRef.id).update({
-				uid: docRef.id
-			});
+		return this.afs.collection('Platillos').add(platillo);
+	}
+
+	agregarUidPlatillo(uidPlatillo) {
+		this.afs.collection('Platillos').doc(uidPlatillo).update({
+			uid: uidPlatillo
 		});
 	}
 
-	agregarGuiso(guiso) {
-		this.afs.collection('Guisos').add(guiso).then(docRef => {
-			this.afs.collection('Guisos').doc(docRef.id).update({
-				uid: docRef.id
-			});
+	agregarUidGuiso(uidGuiso) {
+		this.afs.collection('Guisos').doc(uidGuiso).update({
+			uid: uidGuiso
 		});
+	}	
+
+	agregarGuiso(guiso) {
+		return this.afs.collection('Guisos').add(guiso);
 	}
 
 	actualizarDisponibilidadPlatillo(uidPlatillo, disponibilidad) {
@@ -57,13 +64,35 @@ export class CafeteriaService {
 
 	getPedidosDeCafeteria(uidCafeteria: string) {
 		return this.afs.collection<Pedido>('Pedidos').valueChanges().pipe(
-			map(pedidos => pedidos.filter(pedido => pedido.cafeteria == uidCafeteria))
-			);
+			map(pedidos => {
+				let pedidosConNombres = new Array<Pedido>();
+
+				// pedidos.filter(pedido => pedido.cafeteria == uidCafeteria)
+				pedidos.forEach(pedido => {
+
+					if(pedido.cafeteria == uidCafeteria) {
+						this.usuarioService.getUsuarioPorUid(pedido.cliente).subscribe(res => {
+							let usuario = res as Usuario;
+							console.log('Res: ', usuario.nombre);
+							if(usuario.nombre) {
+								pedido.nombreCliente = usuario.nombre + ' ' + usuario.apellidos;
+								pedidosConNombres.push(pedido);
+							}
+						});
+					}
+				});
+
+				return pedidosConNombres;
+			}));
 	}
 
 	actualizarEstadoPedido(uidPedido: string, nuevoEstado: string) {
 		this.afs.collection('Pedidos').doc(uidPedido).update({
 			estado: nuevoEstado
 		});	
+	}
+
+	getPedido(uidPedido: string) {
+		return this.afs.collection('Pedidos').doc(uidPedido);
 	}
 }

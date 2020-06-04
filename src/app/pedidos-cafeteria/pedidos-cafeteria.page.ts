@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Cache } from 'src/app/Cache/cache';
 import { Pedido } from 'src/app/models/pedido';
 import { CafeteriaService } from 'src/app/services/cafeteria.service';
+import { map, filter } from 'rxjs/operators';
+import { ToastController } from '@ionic/angular';
 
 @Component({
 	selector: 'app-pedidos-cafeteria',
@@ -12,12 +14,13 @@ export class PedidosCafeteriaPage implements OnInit {
 
 	pedidos: Pedido[] = [];
 
-	private PENDIENTE = 'pendiente';
-	private PREPARACION = 'preparacion';
-	private FINALIZADO = 'finalizado';
+	private PENDIENTE = 'Pendiente';
+	private PREPARACION = 'Preparacion';
+	private FINALIZADO = 'Finalizado';
 
 	constructor(
-		private cafeteriaService: CafeteriaService) { 
+		private cafeteriaService: CafeteriaService,
+		private toast: ToastController) { 
 	}
 
 	ngOnInit() {
@@ -56,5 +59,22 @@ export class PedidosCafeteriaPage implements OnInit {
 			pedido.estado = this.FINALIZADO;
 			this.cafeteriaService.actualizarEstadoPedido(pedido.uid, this.FINALIZADO);
 		}
+		// this.getEstadoPedido(pedido);
+	}
+
+	getEstadoPedido(uidPedido: string) {
+		this.cafeteriaService.getPedido(uidPedido).snapshotChanges().pipe(
+			map(pedido => {
+				let msg = 'pedido: ' + pedido;
+				this.presentToast(msg);
+			}));
+	}
+
+	async presentToast(msg: string) {
+		const toast = await this.toast.create({
+			message: msg,
+			duration: 2000
+		});
+		toast.present();
 	}
 }
