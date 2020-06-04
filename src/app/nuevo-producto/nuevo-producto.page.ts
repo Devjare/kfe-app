@@ -108,12 +108,15 @@ export class NuevoProductoPage implements OnInit {
 		console.log('event: ', event);
 
 		var reader = new FileReader();
-
-		var imgtag = document.getElementById('image');
+		// (<HTMLImageElement>document.querySelector(".company_logo"))
+		// var imgtag = document.getElementById('image');
+		var imgtag = <HTMLImageElement>document.getElementById('image');
 		imgtag.title = this.foto.name;
 
 		reader.onload = (e) => {
-			imgtag.src = e.target.result;
+			console.log('e resul:tion ', e);
+			imgtag.src = e.target.result as string;
+			// imgtag.setAttribute('src',)
 		};
 
 		reader.readAsDataURL(this.foto);
