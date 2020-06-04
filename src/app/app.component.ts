@@ -29,15 +29,4 @@ export class AppComponent {
       this.router.navigateByUrl('/login');
     });
   }
-
-  cerrarSesion() {
-    console.log('Cerrando Sesion');
-    Cache.borrar();
-    this.menuController.enable(false, 'menu-principal');
-    this.router.navigateByUrl('/');
-  }
-
-  configurar() {
-    this.router.navigateByUrl('/editar-usuario');
-  }
 }

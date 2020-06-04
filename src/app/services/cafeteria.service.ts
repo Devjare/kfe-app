@@ -66,4 +66,8 @@ export class CafeteriaService {
 			estado: nuevoEstado
 		});	
 	}
+
+	getPedido(uidPedido: string) {
+		return this.afs.collection('Pedidos').doc(uidPedido);
+	}
 }

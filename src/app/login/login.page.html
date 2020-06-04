@@ -16,11 +16,11 @@
 		</div>
 		
 		<!-- Login Button -->
-		<div class="btn-iniciar" (click)="iniciarSesion()">
-			Iniciar Sesion
+		<div class="btn-iniciar" (click)="log()">
+			{{logtext}}
 		</div>
-		<div class="text-registrar">
-			<p>No estas registrado?, solicita una cuenta!</p>
+		<div class="text-registrar" (click)="cambiarLogType()">
+			<p>{{tipText}}</p>
 		</div>
 
 	</div>

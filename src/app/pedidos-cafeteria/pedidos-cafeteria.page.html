@@ -9,7 +9,7 @@
 	<ion-list>	
 		<ion-item lines="none" *ngFor="let pedido of pedidos" (click)="pedidoClicked(pedido)" [ngSwitch]="pedido.estado">
 
-			<div *ngSwitchCase="'pendiente'" class="card recibido">
+			<div *ngSwitchCase="'Pendiente'" class="card recibido">
 				<div class="col-1">
 					<p class="title-card">{{pedido.producto}}</p>
 					<img src="https://cdn.kiwilimon.com/recetaimagen/13550/th5-640x426-6040.jpg"/>
@@ -21,7 +21,7 @@
 				</div>
 			</div>	
 
-			<div *ngSwitchCase="'preparacion'" class="card preparando">
+			<div *ngSwitchCase="'Preparacion'" class="card preparando">
 				<div class="col-1">
 					<p class="title-card">{{pedido.producto}}</p>
 					<img src="https://cdn.kiwilimon.com/recetaimagen/13550/th5-640x426-6040.jpg"/>
@@ -33,7 +33,7 @@
 				</div>
 			</div>
 
-			<div *ngSwitchCase="'finalizado'" class="card entregado">
+			<div *ngSwitchCase="'Finalizado'" class="card entregado">
 				<div class="col-1">
 					<p class="title-card">{{pedido.producto}}</p>
 					<img src="https://cdn.kiwilimon.com/recetaimagen/13550/th5-640x426-6040.jpg"/>
