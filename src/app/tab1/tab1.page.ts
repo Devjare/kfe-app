@@ -37,7 +37,8 @@ export class Tab1Page implements OnInit{
     this.router.navigate(['/pedido-alumno'],{
       queryParams:{
         uidPlatillo: uid,
-        uidCafeteria: this.uidCafeteria
+        uidCafeteria: this.uidCafeteria,
+        kfe: "K-FE 1"
       }
     });
   }

@@ -1,23 +1,17 @@
-//TODO Santana: decirle a andres del color de la app
 <ion-header [translucent]="true">
-  <ion-toolbar color="dark">
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button color="light"></ion-menu-button>
     </ion-buttons>
     <ion-title mode="ios">
       <ion-label>
-        <h1>KFE 1</h1>
+        <h1>K-FE 1</h1>
       </ion-label>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!--<ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">KFE 2</ion-title>
-    </ion-toolbar>
-  </ion-header>-->
 
   <div class="ion-padding">
     <h3 class="menu-text"><strong>Menú</strong></h3>
@@ -29,7 +23,7 @@
       <ion-card-header>
         <ion-row justify-content-between>
           <ion-col col-auto>
-            <img src="../../assets/icon/Imagen2.jpg" item-left/>
+            <img src="{{i.foto}}" item-left/>
           </ion-col>
           <ion-col>
             <ion-row text-wrap>
@@ -40,7 +34,7 @@
             </ion-row>
             <ion-row class="buttons">
               <ion-col>
-                ${{i.costo}}.00
+                ${{i.costo}}
               </ion-col>
             </ion-row>
           </ion-col>
