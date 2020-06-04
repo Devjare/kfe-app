@@ -4,6 +4,7 @@ import { Platillo } from '../app/models/platillo'
 import { Pedido } from '../app/models/pedido'
 import { Guiso } from '../app/models/guiso'
 import { map } from 'rxjs/operators';
+import { functions } from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -63,6 +64,13 @@ export class FirstoreServiceService {
       this.afs.collection('Pedidos').doc(docRef.id).update({
         uid: docRef.id
       })
+    });
+  }
+
+  getUpDataPedido(uidPedido: string){
+    const db = this.afs.firestore;
+    db.collection('Pedidos').doc('EKXYlTFkrbh9awiF5GHA').onSnapshot(function(doc){
+      console.log("Current data: ", doc.data());
     });
   }
 

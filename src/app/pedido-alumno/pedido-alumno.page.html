@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="dark">
+  <ion-toolbar color="primary">
 
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
@@ -7,7 +7,7 @@
 
     <ion-title mode="ios">
       <ion-label>
-        <h1>KFE1</h1>
+        <h1>{{kfe}}</h1>
       </ion-label>
     </ion-title>
 
@@ -20,7 +20,7 @@
   </ion-item>
 
   <div class="center">
-    <img src="../../assets/icon//Imagen1.jpg" class="imagenPedido">
+    <img src="{{platillo.foto}}" class="imagenPedido">
 
     <ion-item class="descripcion" lines="none">
       <ion-text>
@@ -43,18 +43,18 @@
         <p>{{ guisosDisponibles.join(", ") }}</p>
       </ion-text>
     </ion-item>
-
-    <ion-item>
-      <ion-label position="stacked">Describe tu pedido</ion-label>
-      <ion-textarea class="descripcion" [(ngModel)]="descripcion"></ion-textarea>
-    </ion-item>
     
     <ion-item>
       <ion-label position="stacked">Cantidad</ion-label>
       <ion-input required type="text" class="descripcion" [(ngModel)]="cantidad"></ion-input>
     </ion-item>
 
-    <ion-button expand="block" color="dark" (click)="agregarPedido()">Ordenar</ion-button>
+    <ion-item>
+      <ion-label position="stacked">Describe tu pedido</ion-label>
+      <ion-textarea class="descripcion" [(ngModel)]="descripcion"></ion-textarea>
+    </ion-item>
+
+    <ion-button expand="block" color="primary" (click)="agregarPedido()">Ordenar</ion-button>
     
   </div>
 

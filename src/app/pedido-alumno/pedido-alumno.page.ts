@@ -5,6 +5,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { getPlantilla, DocsPlantillas } from '../models/plantillas'
 import { Cache } from 'src/app/Cache/cache';
 import { ThrowStmt } from '@angular/compiler';
+import { AlertController } from '@ionic/angular';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-pedido-alumno',
@@ -17,19 +19,23 @@ export class PedidoAlumnoPage implements OnInit {
   public uidPlatillo: string;
   public uidCafeteria: string;
   public guisosDisponibles: string []; 
+  public kfe = this.activateRouter.snapshot.queryParamMap.get('kfe');
   
   cafeteria: string = '';
-  cantidad: number = 0;
-  cliente: string = 'l3oxRWRR1McilPUeedm8';
+  cantidad: number = 1;
+  cliente: string = '';
   descripcion: string = '';
   fecha: string = '';
   producto: string = '';
   estado: string = '';
   total: number = 0.0;
+  foto: string = "";
 
   constructor(
     public servicio: FirstoreServiceService,
     public activateRouter: ActivatedRoute,
+    public alertController: AlertController,
+    public location: Location,
   ) {}
 
   ngOnInit() {
@@ -47,6 +53,7 @@ export class PedidoAlumnoPage implements OnInit {
 
       this.producto = platillo.producto;
       this.total = platillo.costo;
+      this.foto = platillo.foto;
     });
 
     this.servicio.getGuisos(this.uidCafeteria).subscribe(guisos => {
@@ -60,13 +67,13 @@ export class PedidoAlumnoPage implements OnInit {
   agregarPedido(){
 
     this.total = this.total * this.cantidad;
-    this.estado = "Preparacion";
+    this.estado = "Pendiente";
     this.fecha =  new Date().toISOString();
+    this.cliente = Cache.usuario.uid;
 
     console.log('Cafeteria: ', this.uidCafeteria);
     console.log('cantidad:', this.cantidad);
-    //console.log('Usuario: ', Cache.usuario.uid);
-    console.log('Usuario: ',this.cliente);
+    console.log('Usuario: ', Cache.usuario.uid);
     console.log('descrip: ', this.descripcion);
     console.log('fecha: ', this.fecha);
     console.log('Producto: ', this.producto);
@@ -81,10 +88,44 @@ export class PedidoAlumnoPage implements OnInit {
       fecha: this.fecha,
       producto: this.producto,
       estado: this.estado,
-      total: this.total
+      total: this.total,
+      foto: this.foto
     });
 
     console.log('Enviado exitosamente');
+
+    this.presentAlert();
+
+    this.limpiar();
+
+    this.goBack();
+  }
+
+  limpiar(){
+    this.cafeteria = '';
+    this.cantidad = 1;
+    this.cliente = '';
+    this.descripcion = '';
+    this.fecha = '';
+    this.producto = '';
+    this.estado = '';
+    this.total = 0.0;
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: this.kfe,
+      subHeader: this.producto,
+      message: 'Tu pedido se ha enviado.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  goBack() {
+    this.location.back();
   }
 
 }
