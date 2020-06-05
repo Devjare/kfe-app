@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title mode="ios">
+      <ion-label>
+        <h1>Tus pedidos listos</h1>
+      </ion-label>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="ion-padding">
+    <h3 class="menu-text"><strong><nav>{{nombreCliente}}, ya puedes pasar por los siguientes pedidos.</nav></strong></h3>
+  </div>
+
+  <div>
+    <ion-card *ngFor = "let i of Pedidos">
+      <ion-card-header>
+        <ion-row justify-content-between>
+          <ion-col col-auto>
+            <img src="{{i.foto}}" item-left/>
+          </ion-col>
+          <ion-col>
+            <ion-row text-wrap>
+              <h6 class="menu-text"><strong>{{i.producto}}</strong></h6>
+            </ion-row>
+            <ion-row text-wrap>
+              <p>${{i.descripcion}}</p>
+            </ion-row>
+            <ion-row class="buttons">
+              <ion-col>
+                Cant. {{i.cantidad}}, Total ${{i.total}}
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-card-header>
+    </ion-card>
+  </div>
+  
+</ion-content>

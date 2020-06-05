@@ -5,6 +5,7 @@ import { Pedido } from '../app/models/pedido'
 import { Guiso } from '../app/models/guiso'
 import { map } from 'rxjs/operators';
 import { functions } from 'firebase';
+import { async } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'
@@ -67,11 +68,13 @@ export class FirstoreServiceService {
     });
   }
 
-  getUpDataPedido(uidPedido: string){
-    const db = this.afs.firestore;
-    db.collection('Pedidos').doc('EKXYlTFkrbh9awiF5GHA').onSnapshot(function(doc){
-      console.log("Current data: ", doc.data());
-    });
-  }
+  getPedidosListos(uidCliente: string){
+    return this.afs.collection<Pedido>('Pedidos').valueChanges().pipe(map(pedidos =>{
+      let pedidosListos = pedidos.filter(pedido => pedido.estado == "Finalizado");
+      
+      let pedidosListosPorUsuario = pedidosListos.filter(pedido => pedido.cliente == uidCliente);
 
+      return pedidosListosPorUsuario;
+    }));
+  }
 }
