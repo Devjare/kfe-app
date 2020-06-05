@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path: 'editar-usuario',
     loadChildren: () => import('./pages/editar-usuario/editar-usuario.module').then( m => m.EditarUsuarioPageModule)
+  },
+  {
+    path: 'pedidos-listos',
+    loadChildren: () => import('./pedidos-listos/pedidos-listos.module').then( m => m.PedidosListosPageModule)
   }
 
 ];
