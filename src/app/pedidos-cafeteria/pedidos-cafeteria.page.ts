@@ -20,6 +20,8 @@ export class PedidosCafeteriaPage implements OnInit {
 
 	pedidosFinalizados: boolean = true;
 
+	imagenDefault: string = 'https://firebasestorage.googleapis.com/v0/b/gstioname.appspot.com/o/defaultproductpic.jpg?alt=media&token=e12976a1-a069-4cde-b880-491bbe4a6c60&fbclid=IwAR2il6FWoxzXq38LFZH3pgnNr_FQbtXHSRJNpod7H4lSji5-4lFHbaZUuYU';
+
 	constructor(
 		private cafeteriaService: CafeteriaService,
 		private toast: ToastController) { 

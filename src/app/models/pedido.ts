@@ -5,6 +5,7 @@ export interface Pedido {
 	nombreCliente?: string;
 	descripcion: string;
 	fecha: string;
+	foto?: string;
 	posicion: number;
 	producto: string;
 	estado: string;

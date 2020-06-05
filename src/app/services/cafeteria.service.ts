@@ -69,17 +69,31 @@ export class CafeteriaService {
 
 				// pedidos.filter(pedido => pedido.cafeteria == uidCafeteria)
 				pedidos.forEach(pedido => {
-
-					if(pedido.cafeteria == uidCafeteria && pedido.estado != 'Finalizado') {
-						this.usuarioService.getUsuarioPorUid(pedido.cliente).subscribe(res => {
-							let usuario = res as Usuario;
-							console.log('Res: ', usuario.nombre);
-							if(usuario.nombre) {
-								pedido.nombreCliente = usuario.nombre + ' ' + usuario.apellidos;
-								pedidosConNombres.push(pedido);
-							}
-						});
+					console.log('pedido: ', pedido);
+					if(finalizados) {
+						if(pedido.cafeteria == uidCafeteria) {
+							this.usuarioService.getUsuarioPorUid(pedido.cliente).subscribe(res => {
+								let usuario = res as Usuario;
+								console.log('Res: ', usuario.nombre);
+								if(usuario.nombre) {
+									pedido.nombreCliente = usuario.nombre + ' ' + usuario.apellidos;
+									pedidosConNombres.push(pedido);
+								}
+							});
+						}
+					} else {
+						if(pedido.cafeteria == uidCafeteria && pedido.estado == 'Finalizado') {
+							this.usuarioService.getUsuarioPorUid(pedido.cliente).subscribe(res => {
+								let usuario = res as Usuario;
+								console.log('Res: ', usuario.nombre);
+								if(usuario.nombre) {
+									pedido.nombreCliente = usuario.nombre + ' ' + usuario.apellidos;
+									pedidosConNombres.push(pedido);
+								}
+							});
+						}
 					}
+					
 				});
 
 				return pedidosConNombres;

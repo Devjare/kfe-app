@@ -17,8 +17,8 @@
 
 			<!-- PLATILLOS item -->
 			<div class="scroll-horizontal-item producto-item" *ngFor="let i of platillos" [ngSwitch]="i.disponible">
-				<ion-img *ngSwitchCase="false" class="producto-item not-available" [src]="i.foto? i.foto : default" alt="{{i.producto}}" (click)="cambiarDisponibilidadPlatillo(i)"></ion-img>
-				<ion-img *ngSwitchCase="true" class="producto-item available" [src]="i.foto? i.foto : default" alt="{{i.producto}}" (click)="cambiarDisponibilidadPlatillo(i)"></ion-img>
+				<ion-img *ngSwitchCase="false" class="producto-item not-available" [src]="i.foto? i.foto : imagenDefault" alt="{{i.producto}}" (click)="cambiarDisponibilidadPlatillo(i)"></ion-img>
+				<ion-img *ngSwitchCase="true" class="producto-item available" [src]="i.foto? i.foto : imagenDefault" alt="{{i.producto}}" (click)="cambiarDisponibilidadPlatillo(i)"></ion-img>
 				<p>{{i.producto}}</p>
 			</div>
 
@@ -36,9 +36,9 @@
 
 			<div class="scroll-horizontal-item producto-item" *ngFor="let i of guisos" [ngSwitch]="i.disponible">
 				
-				<ion-img *ngSwitchCase="false" class="producto-item not-available" [src]="i.foto? i.foto : default" alt="{{i.nombre}}" (click)="cambiarDisponibilidadGuiso(i)"></ion-img>
+				<ion-img *ngSwitchCase="false" class="producto-item not-available" [src]="i.foto? i.foto : imagenDefault" alt="{{i.nombre}}" (click)="cambiarDisponibilidadGuiso(i)"></ion-img>
 				
-				<ion-img *ngSwitchCase="true" class="producto-item available" [src]="i.foto? i.foto : default" alt="{{i.producto}}" (click)="cambiarDisponibilidadGuiso(i)"></ion-img>
+				<ion-img *ngSwitchCase="true" class="producto-item available" [src]="i.foto? i.foto : imagenDefault" alt="{{i.producto}}" (click)="cambiarDisponibilidadGuiso(i)"></ion-img>
 				<p>{{i.nombre}}</p>
 			</div>
 
