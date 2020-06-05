@@ -35,7 +35,7 @@ export class LoginService {
 	}
 
 	agregarUsuarioBD(usuario: Usuario) {
-		return this.afs.collection('Usuarios').add(usuario);
+		return this.afs.collection('Usuarios').doc(usuario.uid).set(usuario);
 	}
 
 	actualizarDatosUsuario(nuevoNombre: string, nuevoApellido: string, uid: string) {

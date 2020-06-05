@@ -55,7 +55,7 @@ export class LoginPage implements OnInit {
 				console.log('Exito al iniciar sesion :D');
 
 				Cache.usuario = usuario;
-
+				Cache.login();
 				console.log('Usuario obtenido:');
 				console.log(usuario);
 
@@ -116,8 +116,9 @@ export class LoginPage implements OnInit {
 			Cache.usuario.uid = uid;
 			Cache.usuario.email = this.correo;
 			Cache.usuario.posicion = 'alumno';
+			// Cache.login();
 
-			this.router.navigateByUrl('/editar-usuario', {
+			this.router.navigate(['/editar-usuario'], {
 				queryParams: {
 					tipo: 'registro'
 				}

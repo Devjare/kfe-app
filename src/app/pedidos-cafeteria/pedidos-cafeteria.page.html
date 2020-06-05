@@ -5,7 +5,6 @@
 </ion-header>
 
 <ion-content>
-
 	<ion-list>	
 		<ion-item lines="none" *ngFor="let pedido of pedidos" (click)="pedidoClicked(pedido)" [ngSwitch]="pedido.estado">
 
@@ -48,3 +47,10 @@
 		</ion-item>
 	</ion-list>
 </ion-content>
+
+<ion-footer>
+	<ion-item>
+		<ion-label>Mostrar finalizados</ion-label>
+		<ion-checkbox [(ngModel)]="pedidosFinalizados" (ionChanged)="toggleFinalizados()"></ion-checkbox>
+	</ion-item>
+</ion-footer>

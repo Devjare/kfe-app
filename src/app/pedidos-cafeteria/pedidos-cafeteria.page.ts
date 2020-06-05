@@ -18,6 +18,8 @@ export class PedidosCafeteriaPage implements OnInit {
 	private PREPARACION = 'Preparacion';
 	private FINALIZADO = 'Finalizado';
 
+	pedidosFinalizados: boolean = true;
+
 	constructor(
 		private cafeteriaService: CafeteriaService,
 		private toast: ToastController) { 
@@ -31,7 +33,7 @@ export class PedidosCafeteriaPage implements OnInit {
 
 	obtenerPedidos(uidCafeteria: string) {
 		console.log('obtenerPedidos(', uidCafeteria, ')');
-		this.cafeteriaService.getPedidosDeCafeteria(uidCafeteria).subscribe(pedidos => {
+		this.cafeteriaService.getPedidosDeCafeteria(uidCafeteria, this.pedidosFinalizados).subscribe(pedidos => {
 			console.log('pedidos obtenidos: ', pedidos);
 			this.pedidos = pedidos;
 			console.log('this.pedidos: ', this.pedidos);
@@ -59,7 +61,6 @@ export class PedidosCafeteriaPage implements OnInit {
 			pedido.estado = this.FINALIZADO;
 			this.cafeteriaService.actualizarEstadoPedido(pedido.uid, this.FINALIZADO);
 		}
-		// this.getEstadoPedido(pedido);
 	}
 
 	getEstadoPedido(uidPedido: string) {
@@ -76,5 +77,12 @@ export class PedidosCafeteriaPage implements OnInit {
 			duration: 2000
 		});
 		toast.present();
+	}
+
+	toggleFinalizados() {
+		console.log('cambio: ', this.pedidosFinalizados);
+		if(this.pedidosFinalizados != true) {
+			this.pedidos = this.pedidos.filter(pedido => pedido.estado != this.FINALIZADO);
+		}
 	}
 }

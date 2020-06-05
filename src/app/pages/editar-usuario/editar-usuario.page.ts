@@ -28,7 +28,10 @@ export class EditarUsuarioPage implements OnInit {
 	ngOnInit() {
 		this.uidUsuario = this.route.snapshot.queryParamMap.get('uid');
 		this.tipo = this.route.snapshot.queryParamMap.get('tipo');
+		console.log('tipo: ', this.tipo);
 		this.presentToast('Campos vacios no se actualizaran!');	
+
+		console.log('Current user at editar-usuario: ', Cache.getUsuario());
 
 		this.nombre = Cache.getUsuario().nombre;
 		this.apellidos = Cache.getUsuario().apellidos;
@@ -47,9 +50,13 @@ export class EditarUsuarioPage implements OnInit {
 	}
 
 	guardar() {
-		if(Cache.usuario.posicion == 'alumno') {
+		if(Cache.usuario.posicion == 'alumno' && this.tipo == 'registro') {
 			this.guardarNuevo();
 			this.router.navigateByUrl('/tabs/tab1');
+		} else if (Cache.usuario.posicion == 'alumno' && this.tipo == 'edicion') {
+			this.actualizar();
+			this.router.navigateByUrl('/tabs/tab1');
+			
 		} else {
 			this.actualizar();
 			this.router.navigateByUrl('/tabs-cafeteria');

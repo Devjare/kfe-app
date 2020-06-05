@@ -62,7 +62,7 @@ export class CafeteriaService {
 		});
 	}
 
-	getPedidosDeCafeteria(uidCafeteria: string) {
+	getPedidosDeCafeteria(uidCafeteria: string, finalizados: boolean) {
 		return this.afs.collection<Pedido>('Pedidos').valueChanges().pipe(
 			map(pedidos => {
 				let pedidosConNombres = new Array<Pedido>();
@@ -70,7 +70,7 @@ export class CafeteriaService {
 				// pedidos.filter(pedido => pedido.cafeteria == uidCafeteria)
 				pedidos.forEach(pedido => {
 
-					if(pedido.cafeteria == uidCafeteria) {
+					if(pedido.cafeteria == uidCafeteria && pedido.estado != 'Finalizado') {
 						this.usuarioService.getUsuarioPorUid(pedido.cliente).subscribe(res => {
 							let usuario = res as Usuario;
 							console.log('Res: ', usuario.nombre);

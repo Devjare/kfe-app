@@ -30,6 +30,10 @@ export class TabsCafeteriaPage implements OnInit {
 	}
 
 	configurar() {
-		this.router.navigateByUrl('/editar-usuario');
+		this.router.navigateByUrl('/editar-usuario', {
+			queryParams: {
+				tipo: 'edicion'
+			}
+		});
 	}
 }
